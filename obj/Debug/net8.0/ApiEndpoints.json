@@ -32,18 +32,48 @@
   },
   {
     "ContainingType": "Project_Apis.Controllers.AdminController",
-    "Method": "deletePatient",
-    "RelativePath": "api/Admin/DeletePatientPermanently",
-    "HttpMethod": "DELETE",
+    "Method": "doctorsList",
+    "RelativePath": "api/Admin/DoctorsList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.AdminController",
+    "Method": "GetPassword",
+    "RelativePath": "api/Admin/GetPassword",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "usertype",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "PatientId",
-        "Type": "System.Guid",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.AdminController",
+    "Method": "hospitalList",
+    "RelativePath": "api/Admin/HospitalList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -74,15 +104,25 @@
   },
   {
     "ContainingType": "Project_Apis.Controllers.AdminController",
-    "Method": "updateAccountStatus",
+    "Method": "UpdateAccountStatus",
     "RelativePath": "api/Admin/UpdateAccountStatus",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
+        "Name": "usertype",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
         "Name": "PatientId",
-        "Type": "System.Guid",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Nullable\u00601[[System.Guid, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       }
     ],
@@ -201,6 +241,22 @@
   },
   {
     "ContainingType": "Project_Apis.Controllers.HomeController",
+    "Method": "CreateHospital",
+    "RelativePath": "api/Home/HospitalRegistration",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hospitalViewModel",
+        "Type": "Project_Apis.ViewModel.HospitalViewModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HomeController",
     "Method": "UserRegistartion",
     "RelativePath": "api/Home/PatientRegistration",
     "HttpMethod": "POST",
@@ -237,6 +293,149 @@
         "Name": "password",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "updateAppointmentData",
+    "RelativePath": "api/Hospital/AppointmentData",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Project_Apis.Models.AppointmentData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "AppointmentsList",
+    "RelativePath": "api/Hospital/Appointments",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "HospitalId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "AppointmentsApproval",
+    "RelativePath": "api/Hospital/AppointmentsApproval",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AppointmentId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "status",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "deleteAccount",
+    "RelativePath": "api/Hospital/DeleteHospital",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hospitalId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "GetDoctors",
+    "RelativePath": "api/Hospital/DoctorsList",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "HospitalId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "GetProfile",
+    "RelativePath": "api/Hospital/HospitalProfile",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "HospitalId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "UpdatePassword",
+    "RelativePath": "api/Hospital/UpdatePassword",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "HospitalId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "currentPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "newPassword",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Project_Apis.Controllers.HospitalController",
+    "Method": "updateProfile",
+    "RelativePath": "api/Hospital/UpdateProfile",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Project_Apis.ViewModel.UpdateHospitalViewModel",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

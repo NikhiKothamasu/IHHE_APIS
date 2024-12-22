@@ -27,9 +27,9 @@ namespace Project_Apis.Controllers
         {
             try
             {
-                var results = apiDbContext.Patients.Select(p => new { p.PatientId, p.PatientName,p.Account_Status }).ToList();
+                var results = apiDbContext.Patients.Select(p => new { p.PatientId, p.PatientName, p.Account_Status }).ToList();
                 return Ok(results);
-                
+
             }
             catch (Exception ex)
             {
@@ -37,49 +37,200 @@ namespace Project_Apis.Controllers
             }
         }
 
-        [HttpDelete("DeletePatientPermanently")]
-        public IActionResult deletePatient([FromQuery] Guid PatientId)
+        [HttpGet("DoctorsList")]
+        public IActionResult doctorsList()
         {
             try
             {
-                var appointments = apiDbContext.Appointments.Where(a => a.PatientId.Equals(PatientId)).ToList();
-                var appointmentIds = appointments.Select(a => a.AppointmentId).ToList();
-                var appointmentDatas = apiDbContext.AppointmentDatas.Where(ad => appointmentIds.Contains(ad.AppointmentId)).ToList();
-                if (appointments.Any())
-                {
-                    apiDbContext.Appointments.RemoveRange(appointments);
-                }
-                if (appointmentDatas.Any())
-                {
-                    apiDbContext.AppointmentDatas.RemoveRange(appointmentDatas);
-                }
-                var patient = apiDbContext.Patients.Where(p => p.PatientId.Equals(PatientId)).FirstOrDefault();
-                apiDbContext.Patients.RemoveRange(patient);
-                apiDbContext.SaveChanges();
-                return Ok(new { message = "Patient Details deleted successfully" });
+                var results = apiDbContext.Doctors.Select(p => new { p.Doctor_Id, p.Name, p.Account_Status }).ToList();
+                return Ok(results);
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
         }
+
+        [HttpGet("HospitalList")]
+        public IActionResult hospitalList()
+        {
+            try
+            {
+                var results = apiDbContext.Hospitals.Select(p => new { p.HospitalId, p.HospitalName, p.AccountStatus }).ToList();
+                return Ok(results);
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred", details = ex.Message });
+            }
+        }
+
+
+
+        //[HttpDelete("DeletePatientPermanently")]
+        //public IActionResult deletePatient([FromQuery] int PatientId)
+        //{
+        //    try
+        //    {
+        //        var appointments = apiDbContext.Appointments.Where(a => a.PatientId == PatientId).ToList();
+        //        var appointmentIds = appointments.Select(a => a.AppointmentId).ToList();
+        //        var appointmentDatas = apiDbContext.AppointmentDatas.Where(ad => appointmentIds.Contains(ad.AppointmentId)).ToList();
+        //        if (appointments.Any())
+        //        {
+        //            apiDbContext.Appointments.RemoveRange(appointments);
+        //        }
+        //        if (appointmentDatas.Any())
+        //        {
+        //            apiDbContext.AppointmentDatas.RemoveRange(appointmentDatas);
+        //        }
+        //        var patient = apiDbContext.Patients.Where(p => p.PatientId.Equals(PatientId)).FirstOrDefault();
+        //        apiDbContext.Patients.RemoveRange(patient);
+        //        apiDbContext.SaveChanges();
+        //        return Ok(new { message = "Patient Details deleted successfully" });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, new { message = "An error occurred", details = ex.Message });
+        //    }
+        //}
 
         [HttpPut("UpdateAccountStatus")]
-        public IActionResult updateAccountStatus([FromQuery] Guid PatientId)
+        public IActionResult UpdateAccountStatus([FromQuery] string usertype, [FromQuery] int? PatientId,[FromQuery] Guid? Id)
         {
             try
             {
-                var patient = apiDbContext.Patients.FirstOrDefault(p => p.PatientId.Equals(PatientId));
-                patient.Account_Status = "Active";
-                apiDbContext.SaveChanges();
-                return Ok(new { message = "Account Status Changed Successfully" });
+                if (usertype.Equals("Patient", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (PatientId.HasValue)
+                    {
+                        var patient = apiDbContext.Patients
+                            .FirstOrDefault(p => p.PatientId == PatientId);
+
+                        if (patient != null)
+                        {
+                            patient.Account_Status = "Active";
+                            apiDbContext.SaveChanges();
+                            return Ok(new { message = "Patient account status updated successfully" });
+                        }
+                        return NotFound(new { message = "Patient not found" });
+                    }
+                    return BadRequest(new { message = "PatientId is required for Patient usertype" });
+                }
+                else if (usertype.Equals("Doctor", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (Id.HasValue)
+                    {
+                        var doctor = apiDbContext.Doctors
+                            .FirstOrDefault(d => d.Doctor_Id.Equals(Id.Value));
+
+                        if (doctor != null)
+                        {
+                            
+                            doctor.Account_Status = "Active"; 
+                            apiDbContext.SaveChanges();
+                            return Ok(new { message = "Doctor account status updated successfully" });
+                        }
+                        return NotFound(new { message = "Doctor not found" });
+                    }
+                    return BadRequest(new { message = "DoctorId is required for Doctor usertype" });
+                }
+                else if (usertype.Equals("Hospital", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (Id.HasValue)
+                    {
+                        var hospital = apiDbContext.Hospitals
+                            .FirstOrDefault(h => h.HospitalId.Equals(Id.Value));
+
+                        if (hospital != null)
+                        {
+                            
+                            hospital.AccountStatus = "Active"; 
+                            apiDbContext.SaveChanges();
+                            return Ok(new { message = "Hospital account status updated successfully" });
+                        }
+                        return NotFound(new { message = "Hospital not found" });
+                    }
+                    return BadRequest(new { message = "HospitalId is required for Hospital usertype" });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Invalid usertype" });
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
         }
 
+
+        [HttpGet("GetPassword")]
+        public IActionResult GetPassword([FromQuery] string usertype, [FromQuery] int? PatientId, [FromQuery] Guid? Id)
+        {
+            try
+            {
+                if (usertype.Equals("Patient", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (PatientId.HasValue)
+                    {
+                        var result = apiDbContext.Patients
+                            .Where(p => p.PatientId == PatientId.Value)
+                            .Select(p => p.Password)
+                            .FirstOrDefault();
+
+                        if (result != null)
+                        {
+                            return Ok(result);
+                        }
+                        return NotFound(new { message = "Patient not found" });
+                    }
+                    return BadRequest(new { message = "PatientId is required for Patient usertype" });
+                }
+                else if (usertype.Equals("Doctor", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (Id.HasValue)
+                    {
+                        var result = apiDbContext.Doctors
+                            .Where(d => d.Doctor_Id.Equals(Id.Value)).Select(d =>d.Password)
+                            .FirstOrDefault();
+
+                        if (result != null)
+                        {
+                            return Ok(result);
+                        }
+                        return NotFound(new { message = "Doctor not found" });
+                    }
+                    return BadRequest(new { message = "DoctorId is required for Doctor usertype" });
+                }
+                else if (usertype.Equals("Hospital", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (Id.HasValue)
+                    {
+                        var result = apiDbContext.Hospitals
+                            .Where(h => h.HospitalId.Equals(Id.Value))
+                            .Select(h => h.HospitalAccountPassword)
+                            .FirstOrDefault();
+
+                        if (result != null)
+                        {
+                            return Ok(result);
+                        }
+                        return NotFound(new { message = "Hospital not found" });
+                    }
+                    return BadRequest(new { message = "HospitalId is required for Hospital usertype" });
+                }
+                else
+                {
+                    return BadRequest(new { message = "Invalid usertype" });
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An error occurred", details = ex.Message });
+            }
+        }
 
         //APPOINTMENT RELATED APIS
 
@@ -91,7 +242,8 @@ namespace Project_Apis.Controllers
                 var appointments = apiDbContext.Appointments.ToList();
                 return Ok(appointments);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
         }
@@ -146,11 +298,11 @@ namespace Project_Apis.Controllers
             }
             else if (add_data.UserType.Equals("Patient", StringComparison.Ordinal))
             {
-               
-                var patient_name = apiDbContext.Patients.Where(p => p.PatientId == Convert.ToInt32(add_data.UserId)) 
+
+                var patient_name = apiDbContext.Patients.Where(p => p.PatientId == Convert.ToInt32(add_data.UserId))
                                                        .Select(p => p.PatientName)
                                                        .FirstOrDefault();
-                SendEmailTicketRasing(insert_data.UserEmail, insert_data.TicketId, insert_data.Issue,patient_name);
+                SendEmailTicketRasing(insert_data.UserEmail, insert_data.TicketId, insert_data.Issue, patient_name);
             }
             else
             {

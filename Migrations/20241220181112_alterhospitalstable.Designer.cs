@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Project_Apis.Data;
 
@@ -11,9 +12,11 @@ using Project_Apis.Data;
 namespace Project_Apis.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241220181112_alterhospitalstable")]
+    partial class alterhospitalstable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,15 +42,14 @@ namespace Project_Apis.Migrations
                     b.Property<int>("heart_rate")
                         .HasColumnType("int");
 
+                    b.Property<int>("height")
+                        .HasColumnType("int");
+
                     b.Property<string>("labtest")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("medication")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("prescritionnote")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -162,8 +164,8 @@ namespace Project_Apis.Migrations
                     b.Property<string>("HospitalEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly?>("HospitalEstablishedDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime?>("HospitalEstablishedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("HospitalName")
                         .HasColumnType("nvarchar(max)");

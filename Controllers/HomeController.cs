@@ -5,7 +5,7 @@ using Project_Apis.Models;
 using Project_Apis.ViewModel;
 using System.Net.Mail;
 using System.Net;
-using ProjectApis.Models;
+using System.Numerics;
 
 namespace Project_Apis.Controllers
 {
@@ -66,8 +66,8 @@ namespace Project_Apis.Controllers
             try
             {
                 var hospitalId = apiDbContext.Hospitals
-                    .Where(h => h.Hospital_Name.Equals(doctor.AssociatedHospital))
-                    .Select(h => h.Id)
+                    .Where(h => h.HospitalName.Equals(doctor.AssociatedHospital))
+                    .Select(h => h.HospitalId)
                     .FirstOrDefault();
 
                 if (hospitalId == Guid.Empty)
@@ -106,14 +106,14 @@ namespace Project_Apis.Controllers
 
 
         [HttpPost("HospitalRegistration")]
-        public async Task<IActionResult> CreateHospital([FromBody] HospitalViewModel hospitalViewModel)
+        public IActionResult CreateHospital([FromBody] HospitalViewModel hospitalViewModel)
         {
             if (hospitalViewModel == null)
             {
                 return BadRequest("Hospital data is required.");
             }
 
-            // Create a new hospital entity and map data from ViewModel
+
             var hospital = new Hospital
             {
                 HospitalId = Guid.NewGuid(),
@@ -125,18 +125,21 @@ namespace Project_Apis.Controllers
                 HospitalType = hospitalViewModel.HospitalType,
                 HospitalAddress = hospitalViewModel.HospitalAddress,
                 HospitalRegion = hospitalViewModel.HospitalRegion,
-                HospitalAccountPassword = hospitalViewModel.HospitalAccountPassword,
+                HospitalAccountPassword = hospitalViewModel.HospitalName + "@" + 123,
                 HospitalEstablishedDate = hospitalViewModel.HospitalEstablishedDate,
                 HospitalOwnershipType = hospitalViewModel.HospitalOwnershipType,
-                AccountStatus = "active",  // Set AccountStatus to "active"
+                AccountStatus = "active",
             };
+            var result = apiDbContext.Hospitals
+                   .FirstOrDefault(p => p.HospitalEmail.Equals(hospital.HospitalEmail));
 
-            // Add the hospital to the context and save changes
-            _context.Hospitals.Add(hospital);
-            await _context.SaveChangesAsync();
-
-            // Return success response
-            return CreatedAtAction(nameof(GetHospitalById), new { id = hospital.HospitalId }, hospital);
+            if (result != null)
+            {
+                return Conflict(new { message = "You are already registered with this Email" });
+            }
+            apiDbContext.Hospitals.Add(hospital);
+            apiDbContext.SaveChanges();
+            return Ok(hospital);
         }
 
 
@@ -230,10 +233,52 @@ namespace Project_Apis.Controllers
                     return NotFound(new { message = "User not found" });
                 }
             }
+            
+            else if(usertype.Equals("Hospital",StringComparison.OrdinalIgnoreCase))
+            {
+                var result = apiDbContext.Hospitals.Where(p => p.HospitalEmail.Equals("contact@childrenshospital.org")).FirstOrDefault();
+                if (result != null)
+                {
+                    if (result.AccountStatus.Equals("active", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (result.HospitalAccountPassword.Equals(password))
+                        {
+                            return Ok(new { message = "Authentication successful", hospitalId = result.HospitalId });
+                        }
+                        else
+                        {
+                            return Unauthorized(new { message = "Invalid password" });
+                        }
+                    }
+                    else
+                    {
+                        return Unauthorized(new { message = "Account is not active" });
+                    }
+                }
+                else
+                {
+                    return NotFound(new { message = "User not found" });
+                }
+            }
+
+            else if (usertype.Equals("Admin", StringComparison.OrdinalIgnoreCase))
+            {
+                if (username.Equals("admin.ihhe@gmail.com") &&
+                    password.Equals("Admin@IHHE"))
+                {
+                    return Ok(new { message = "Authentication successful", role = "Admin" });
+                }
+                else
+                {
+                    return Unauthorized(new { message = "Invalid username or password" });
+                }
+            }
+
             else
             {
                 return BadRequest(new { message = "Invalid user type" });
             }
+            
         }
 
     }

@@ -17,20 +17,22 @@
         }
       }
     },
-    "/api/Admin/DeletePatientPermanently": {
-      "delete": {
+    "/api/Admin/DoctorsList": {
+      "get": {
         "tags": [
           "Admin"
         ],
-        "parameters": [
-          {
-            "name": "PatientId",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
+        "responses": {
+          "200": {
+            "description": "OK"
           }
+        }
+      }
+    },
+    "/api/Admin/HospitalList": {
+      "get": {
+        "tags": [
+          "Admin"
         ],
         "responses": {
           "200": {
@@ -46,7 +48,59 @@
         ],
         "parameters": [
           {
+            "name": "usertype",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "PatientId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Id",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Admin/GetPassword": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "parameters": [
+          {
+            "name": "usertype",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "PatientId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Id",
             "in": "query",
             "schema": {
               "type": "string",
@@ -338,6 +392,37 @@
         }
       }
     },
+    "/api/Home/HospitalRegistration": {
+      "post": {
+        "tags": [
+          "Home"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HospitalViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HospitalViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/HospitalViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Home/UserAuthentication": {
       "get": {
         "tags": [
@@ -363,6 +448,221 @@
             "in": "query",
             "schema": {
               "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/Appointments": {
+      "get": {
+        "tags": [
+          "Hospital"
+        ],
+        "parameters": [
+          {
+            "name": "HospitalId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/AppointmentsApproval": {
+      "put": {
+        "tags": [
+          "Hospital"
+        ],
+        "parameters": [
+          {
+            "name": "AppointmentId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/AppointmentData": {
+      "post": {
+        "tags": [
+          "Hospital"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentData"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentData"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppointmentData"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/DoctorsList": {
+      "get": {
+        "tags": [
+          "Hospital"
+        ],
+        "parameters": [
+          {
+            "name": "HospitalId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/HospitalProfile": {
+      "get": {
+        "tags": [
+          "Hospital"
+        ],
+        "parameters": [
+          {
+            "name": "HospitalId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/UpdateProfile": {
+      "put": {
+        "tags": [
+          "Hospital"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHospitalViewModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHospitalViewModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHospitalViewModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/UpdatePassword": {
+      "put": {
+        "tags": [
+          "Hospital"
+        ],
+        "parameters": [
+          {
+            "name": "HospitalId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "currentPassword",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "newPassword",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Hospital/DeleteHospital": {
+      "delete": {
+        "tags": [
+          "Hospital"
+        ],
+        "parameters": [
+          {
+            "name": "hospitalId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -634,6 +934,44 @@
   },
   "components": {
     "schemas": {
+      "AppointmentData": {
+        "type": "object",
+        "properties": {
+          "appointmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "labtest": {
+            "type": "string",
+            "nullable": true
+          },
+          "diagonsis": {
+            "type": "string",
+            "nullable": true
+          },
+          "medication": {
+            "type": "string",
+            "nullable": true
+          },
+          "weight": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "prescritionnote": {
+            "type": "string",
+            "nullable": true
+          },
+          "blood_pressure": {
+            "type": "string",
+            "nullable": true
+          },
+          "heart_rate": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "Appointments": {
         "type": "object",
         "properties": {
@@ -699,6 +1037,53 @@
             "nullable": true
           },
           "email": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "HospitalViewModel": {
+        "type": "object",
+        "properties": {
+          "hospitalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "founderName": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableFacilities": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalType": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalRegion": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalEstablishedDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "hospitalOwnershipType": {
             "type": "string",
             "nullable": true
           }
@@ -833,6 +1218,44 @@
             "nullable": true
           },
           "issue": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateHospitalViewModel": {
+        "type": "object",
+        "properties": {
+          "hospitalId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "hospitalName": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalEmail": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "availableFacilities": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalType": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "hospitalOwnershipType": {
             "type": "string",
             "nullable": true
           }

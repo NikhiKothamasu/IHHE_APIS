@@ -27,7 +27,7 @@ namespace Project_Apis.Controllers
         {
             try
             {
-                var results = apiDbContext.Hospitals.Where(h=>h.Account_Staus=="Active").Select(h => h.Hospital_Name).ToList();
+                var results = apiDbContext.Hospitals.Where(h=>h.AccountStatus=="Active").Select(h => h.HospitalName).ToList();
                 return Ok(results);
             }
             catch (Exception ex)
@@ -50,6 +50,8 @@ namespace Project_Apis.Controllers
                 return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
         }
+
+       
 
         // Appoinmet Insertion To Database
         [HttpPost("BookAppoinment")]
@@ -133,7 +135,7 @@ namespace Project_Apis.Controllers
         {
             try
             {
-                var results = apiDbContext.Patients.Where(p => p.PatientId==PatientId).ToList();
+                var results = apiDbContext.Patients.Where(p => p.PatientId==PatientId &&p.Account_Status.Equals("Active")).ToList();
                 return Ok(results);
             }
             catch (Exception ex)

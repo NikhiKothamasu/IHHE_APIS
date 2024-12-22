@@ -10,7 +10,7 @@ namespace Project_Apis.Models
         public string diagonsis { get; set; }
         public string medication {  get; set; }
         public int weight {  get; set; }
-        public int height { get; set; }
+        public string prescritionnote { get; set; }
 
         public string blood_pressure { get; set; }
         public int heart_rate { get; set; }

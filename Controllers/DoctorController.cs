@@ -132,7 +132,7 @@ namespace Project_Apis.Controllers
                 
                 DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
                 var doctorName = apiDbContext.Doctors
-                    .Where(d => d.Doctor_Id == doctorId)
+                    .Where(d => d.Doctor_Id == doctorId )
                     .Select(d => d.Name)
                     .FirstOrDefault();
 
@@ -142,7 +142,7 @@ namespace Project_Apis.Controllers
                 }
                 var results = from a in apiDbContext.Appointments
                               join p in apiDbContext.Patients on a.PatientId equals p.PatientId
-                              where a.Doctor == doctorName && a.AppointmentDate >= currentDate
+                              where a.Doctor == doctorName && a.AppointmentDate >= currentDate && a.Status.Equals("Approved")
                               select new
                               {
                                  

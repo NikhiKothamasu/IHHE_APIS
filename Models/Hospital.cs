@@ -1,6 +1,6 @@
 ﻿using Project_Apis.Models;
 
-namespace ProjectApis.Models
+namespace Project_Apis.Models
 {
     public class Hospital
     {
@@ -24,7 +24,7 @@ namespace ProjectApis.Models
 
         public string? HospitalAccountPassword { get; set; }
 
-        public DateTime? HospitalEstablishedDate { get; set; }
+        public DateOnly? HospitalEstablishedDate { get; set; }
 
         public string? HospitalOwnershipType { get; set; }
 
