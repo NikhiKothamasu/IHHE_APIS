@@ -20,11 +20,36 @@ namespace Project_Apis.Controllers
         {
             try
             {
-                var hospitalname = apiDbContext.Hospitals.Where(h => h.HospitalId.Equals(HospitalId)).Select(h => h.HospitalName).FirstOrDefault();
-                var result = apiDbContext.Appointments.Where(h => h.HospitalName.Equals(hospitalname));
+                var hospitalName = apiDbContext.Hospitals
+                    .Where(h => h.HospitalId.Equals(HospitalId))
+                    .Select(h => h.HospitalName)
+                    .FirstOrDefault();
+
+                if (string.IsNullOrEmpty(hospitalName))
+                {
+                    return NotFound($"Hospital with ID {HospitalId} not found.");
+                }
+                var result = apiDbContext.Appointments
+                    .Where(a => a.HospitalName.Equals(hospitalName))
+                    .Join(apiDbContext.Patients,
+                          appointment => appointment.PatientId,
+                          patient => patient.PatientId,
+                          (appointment, patient) => new
+                          {
+                              AppointmentId = appointment.AppointmentId,
+                              AppointmentDate=appointment.AppointmentDate,
+                              AppointmentTime = appointment.AppointmentTime,
+                              AppointmentStatus = appointment.Status,
+                              DoctorName=appointment.Doctor,
+                              AppointmentNote = appointment.AppointmentNote,
+                              PatientName = patient.PatientName
+                          })
+                    .ToList();
+
                 return Ok(result);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
         }

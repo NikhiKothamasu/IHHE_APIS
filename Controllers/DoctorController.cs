@@ -145,7 +145,7 @@ namespace Project_Apis.Controllers
                               where a.Doctor == doctorName && a.AppointmentDate >= currentDate && a.Status.Equals("Approved")
                               select new
                               {
-                                 
+                                  a.AppointmentId,
                                   a.AppointmentDate,
                                   a.AppointmentTime,
                                   a.AppointmentNote,

@@ -270,6 +270,14 @@ namespace Project_Apis.Controllers
             }
         }
 
+        [HttpGet("Tickets")]
+        public IActionResult PendingTickets()
+        {
+            var data=apiDbContext.Tickets.ToList();
+            return Ok(data);
+        }
+
+
 
         //Ticket Creation
         [HttpPost("RaiseTicket")]
@@ -343,6 +351,67 @@ namespace Project_Apis.Controllers
                     IsBodyHtml = false,
                 };
 
+                mailMessage.To.Add(recipientEmail);
+                smtpClient.Send(mailMessage);
+                _logger.LogInformation("Email Sent");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation($"Error sending email: {ex.Message}");
+            }
+        }
+
+        
+        [HttpPut("TicketIsuueSolved")]
+        public async Task<IActionResult> Update_Isuue([FromQuery] Guid id)
+        {
+            try
+            {
+                var ticket = apiDbContext.Tickets.FirstOrDefault(p => p.TicketId == id);
+                if (ticket == null) return NotFound(new { message = "Ticket ID not found" });
+                if (string.IsNullOrEmpty(ticket.UserEmail)) return BadRequest(new { message = "Recipient email is null or empty" });
+                ticket.Status = "Solved";
+                await apiDbContext.SaveChangesAsync();
+                SendEmailTicketSolved(ticket.UserEmail, ticket.TicketId, ticket.Issue, ticket.UserType);
+                return Ok(new { message = "Ticket status updated successfully" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = $"An error occurred: {ex.Message}" });
+            }
+        }
+
+        private void SendEmailTicketSolved(string recipientEmail, Guid ticketId, string issue, string recipientName)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(recipientEmail))
+                {
+                    _logger.LogInformation("Email address is null or empty.");
+                    return;
+                }
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("nikhilkothamasu1@gmail.com", "qbyt bddz qnid nspz"),
+                    EnableSsl = true,
+                };
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress("your-email@gmail.com"),
+                    Subject = "Ticket Resolved Notification",
+                    Body = $"Dear User,\n\n" +
+                   "We are pleased to inform you that the issue you reported to IHHE Hospitals has been resolved.\n\n" +
+                   $"Issue: {issue}\n" +
+                   $"Ticket ID: {ticketId}\n\n" +
+                   "Our team has worked diligently to address this matter, and we hope the resolution meets your expectations.\n\n" +
+                   "If you have any further concerns or require additional assistance, please do not hesitate to contact us.\n\n" +
+                   "Thank you for your patience and cooperation.\n\n" +
+                   "Best regards,\n" +
+                   "IHHE Team\n\n" +
+                   "(Note: This is an automated message. Please do not reply to this email.)",
+                    IsBodyHtml = false
+                };
                 mailMessage.To.Add(recipientEmail);
                 smtpClient.Send(mailMessage);
                 _logger.LogInformation("Email Sent");

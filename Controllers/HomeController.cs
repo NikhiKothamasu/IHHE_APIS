@@ -236,7 +236,7 @@ namespace Project_Apis.Controllers
             
             else if(usertype.Equals("Hospital",StringComparison.OrdinalIgnoreCase))
             {
-                var result = apiDbContext.Hospitals.Where(p => p.HospitalEmail.Equals("contact@childrenshospital.org")).FirstOrDefault();
+                var result = apiDbContext.Hospitals.Where(p => p.HospitalEmail.Equals(username)).FirstOrDefault();
                 if (result != null)
                 {
                     if (result.AccountStatus.Equals("active", StringComparison.OrdinalIgnoreCase))

@@ -216,10 +216,7 @@ namespace Project_Apis.Controllers
             {
                 return StatusCode(500, new { message = "An error occurred", details = ex.Message });
             }
-        }
-
-
-      
+        } 
     }
 }
 
