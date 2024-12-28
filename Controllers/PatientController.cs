@@ -119,7 +119,8 @@ namespace Project_Apis.Controllers
                               {
                                   a.HospitalName, a.AppointmentDate, a.Doctor,
                                   ad.labtest, ad.diagonsis, ad.medication,
-                                  ad.weight, ad.blood_pressure, ad.heart_rate
+                                  ad.weight, ad.blood_pressure, ad.heart_rate,
+                                  ad.prescritionnote
                               };
                 return Ok(results.ToList());
             }
@@ -146,7 +147,7 @@ namespace Project_Apis.Controllers
 
         //Patient Account Updation
         [HttpPut("UpdateProfile")]
-        public IActionResult UpdateAccount(Patient obj)
+        public IActionResult UpdateAccount(PatientUpdate obj)
         {
             try
             {

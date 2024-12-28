@@ -846,17 +846,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/PatientUpdate"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/PatientUpdate"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Patient"
+                "$ref": "#/components/schemas/PatientUpdate"
               }
             }
           }
@@ -1006,51 +1006,6 @@
         },
         "additionalProperties": false
       },
-      "Appointments": {
-        "type": "object",
-        "properties": {
-          "appointmentId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "patientId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "hospitalName": {
-            "type": "string",
-            "nullable": true
-          },
-          "doctor": {
-            "type": "string",
-            "nullable": true
-          },
-          "appointmentDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "appointmentTime": {
-            "type": "string",
-            "format": "time"
-          },
-          "appointmentNote": {
-            "type": "string",
-            "nullable": true
-          },
-          "status": {
-            "type": "string",
-            "nullable": true
-          },
-          "requestDateTime": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "patient": {
-            "$ref": "#/components/schemas/Patient"
-          }
-        },
-        "additionalProperties": false
-      },
       "DoctorViewModel": {
         "type": "object",
         "properties": {
@@ -1124,7 +1079,7 @@
         },
         "additionalProperties": false
       },
-      "Patient": {
+      "PatientUpdate": {
         "type": "object",
         "properties": {
           "patientId": {
@@ -1151,11 +1106,6 @@
             "type": "string",
             "nullable": true
           },
-          "height": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "bloodType": {
             "type": "string",
             "nullable": true
@@ -1170,21 +1120,6 @@
           },
           "emergencyContact": {
             "type": "string",
-            "nullable": true
-          },
-          "account_Status": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          },
-          "appointments": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Appointments"
-            },
             "nullable": true
           }
         },

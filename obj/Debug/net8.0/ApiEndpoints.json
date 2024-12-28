@@ -608,7 +608,7 @@
     "Parameters": [
       {
         "Name": "obj",
-        "Type": "Project_Apis.Models.Patient",
+        "Type": "Project_Apis.ViewModel.PatientUpdate",
         "IsRequired": true
       }
     ],
