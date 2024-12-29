@@ -139,6 +139,7 @@ namespace Project_Apis.Controllers
             }
             apiDbContext.Hospitals.Add(hospital);
             apiDbContext.SaveChanges();
+            SendEmail(hospital.HospitalEmail,hospital.HospitalAccountPassword);
             return Ok(hospital);
         }
 
@@ -152,17 +153,22 @@ namespace Project_Apis.Controllers
                 var smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587, 
-                    Credentials = new NetworkCredential("revanthuppula0503@gmail.com", "lbgm bxiy tkuo gxtn"), 
+                    Credentials = new NetworkCredential("ihhehealth@gmail.com", "jtdz lkdh ietq qacd"), 
                     EnableSsl = true, 
                 };
                 var mailMessage = new MailMessage
                 {
                     From = new MailAddress("your-email@gmail.com"),
                     Subject = "Login Credentials from IHHE",
-                    Body = $"Thanks for registering with IHHE. Your login credentials are as follows:\n\n" +
+                    Body = $"Dear User,\n\n" +
+                           "Thank you for being a part of the IHHE Hospitals. We are pleased to have you with us. Below we attached your login credentials:\n\n" +
                            $"Username: {recipientEmail}\n" +
                            $"Password: {password}\n\n" +
-                           "Please change your password once you log in.",
+                           "Please log in to the portal using the provided credentials. Once logged in, we kindly ask you to change your password for security purposes.\n\n" +
+                           "Thank you for your cooperation.\n\n" +
+                           "Best regards,\n" +
+                           "IHHE Team\n\n" +
+                           "(Note: This is an automated message. Please do not reply to this email.)",
                     IsBodyHtml = false,
                 };
                 mailMessage.To.Add(recipientEmail);

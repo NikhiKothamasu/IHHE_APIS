@@ -331,7 +331,7 @@ namespace Project_Apis.Controllers
                 var smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
-                    Credentials = new NetworkCredential("revanthuppula0503@gmail.com", "lbgm bxiy tkuo gxtn"),
+                    Credentials = new NetworkCredential("ihhehealth@gmail.com", "jtdz lkdh ietq qacd"),
                     EnableSsl = true,
                 };
                 var mailMessage = new MailMessage
@@ -393,7 +393,7 @@ namespace Project_Apis.Controllers
                 var smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
-                    Credentials = new NetworkCredential("nikhilkothamasu1@gmail.com", "qbyt bddz qnid nspz"),
+                    Credentials = new NetworkCredential("ihhehealth@gmail.com", "jtdz lkdh ietq qacd"),
                     EnableSsl = true,
                 };
                 var mailMessage = new MailMessage

@@ -3,36 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\revan\\source\\repos\\Project_Apis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\viewmodel\\patientupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:viewmodel\\patientupdate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\controllers\\hospitalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:controllers\\hospitalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|c:\\users\\revan\\source\\repos\\project_apis\\migrations\\20241228065230_adding tables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D0A8797E-325E-4F31-B0AC-DF61F3DF7661}|Project_Apis.csproj|solutionrelative:migrations\\20241228065230_adding tables.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,104 +14,20 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "20241228065230_Adding Tables.cs",
-              "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Migrations\\20241228065230_Adding Tables.cs",
-              "RelativeDocumentMoniker": "Migrations\\20241228065230_Adding Tables.cs",
-              "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Migrations\\20241228065230_Adding Tables.cs",
-              "RelativeToolTip": "Migrations\\20241228065230_Adding Tables.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-28T06:52:31.017Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-12-28T06:50:23.065Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "PatientUpdate.cs",
-              "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\ViewModel\\PatientUpdate.cs",
-              "RelativeDocumentMoniker": "ViewModel\\PatientUpdate.cs",
-              "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\ViewModel\\PatientUpdate.cs",
-              "RelativeToolTip": "ViewModel\\PatientUpdate.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-27T17:57:53.892Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "Controllers\\HomeController.cs",
-              "ViewState": "AgIAAM4AAAAAAAAAAAAswO4AAABeAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-27T05:05:19.692Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "HospitalController.cs",
-              "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\HospitalController.cs",
-              "RelativeDocumentMoniker": "Controllers\\HospitalController.cs",
-              "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\HospitalController.cs",
-              "RelativeToolTip": "Controllers\\HospitalController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAAwCoAAAA8AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T18:35:55.451Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PatientController.cs",
-              "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\PatientController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PatientController.cs",
-              "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\PatientController.cs",
-              "RelativeToolTip": "Controllers\\PatientController.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAiwKQAAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:38:03.365Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DoctorController.cs",
-              "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\DoctorController.cs",
-              "RelativeDocumentMoniker": "Controllers\\DoctorController.cs",
-              "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\DoctorController.cs",
-              "RelativeToolTip": "Controllers\\DoctorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJkAAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T17:19:49.352Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "AdminController.cs",
               "DocumentMoniker": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "Controllers\\AdminController.cs",
               "ToolTip": "C:\\Users\\revan\\source\\repos\\Project_Apis\\Controllers\\AdminController.cs",
               "RelativeToolTip": "Controllers\\AdminController.cs",
-              "ViewState": "AgIAACIBAAAAAAAAAAAgwJkBAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAIUBAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-22T16:31:01.49Z"
+              "WhenOpened": "2024-12-29T19:03:55.991Z",
+              "EditorCaption": ""
             }
           ]
         }
